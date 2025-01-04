@@ -7,4 +7,4 @@ Automate file management
 find . /name '*.pdf' > paths_list.txt
 ```
 
-this will find all files that end with .pdf and write its path to paths_list.txt
+this will find all files that end with .pdf and write their paths to paths_list.txt
