@@ -15,4 +15,4 @@ find . -name '*.pdf' > paths_list.txt
 ```
 
 ## When using move[mo]
-if you're afraid to forget each file's previous path, then copy the paths_list.txt to the destination folder, so you can return to it whenever needed
+if you're afraid to forget each file's previous path, then copy the paths_list.txt file to the destination folder, so you can return to it whenever needed
