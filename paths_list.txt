@@ -1,0 +1,10 @@
+./blassa/f.pdf
+./blassa/f1.pdf
+./blassa/f10.pdf
+./blassa/f2.pdf
+./blassa/f4.pdf
+./blassa/f5.pdf
+./blassa/f6.pdf
+./blassa/f7.pdf
+./blassa/f8.pdf
+./blassa_okhra/f7.pdf
