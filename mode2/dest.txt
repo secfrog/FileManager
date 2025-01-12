@@ -1,0 +1,4 @@
+./lblassa_lmajya
+./lblassa_lmajya_lokhra
+./chi_blassa_makaynach
+./blassa_kayna_walakine_file.txt
