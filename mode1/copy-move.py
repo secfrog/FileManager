@@ -22,19 +22,20 @@ else:
 
 
 # Creating destination directory
-def check_file_or_directory_existance(unique_dir_or_file): # input: the file or directory you want to check on
+def check_file_or_directory_existance(dir_or_file): # input: the file or directory you want to check on
     dir_or_file_already_exist = True
     k = 1
     
-    unique_dir_or_file_name, its_extension = os.path.splitext(unique_dir_or_file)
+    unique = dir_or_file
+    unique2, its_extension = os.path.splitext(dir_or_file)
 
     while dir_or_file_already_exist: # if file or folder is unique, the variable will be as False and the while loop will be breaked
-        if os.path.exists(unique_dir_or_file): # check and rename if not unique
-            unique_dir_or_file = unique_dir_or_file_name + f'_{k}' + its_extension
+        if os.path.exists(unique): # check and rename if not unique
+            unique = unique2 + f'({k})' + its_extension
             k+=1
         else:
             dir_or_file_already_exist = False
-    return unique_dir_or_file # return the same file or directory if unique else the renamed file or directory will be returned
+    return unique # return the same file or directory if unique else the renamed file or directory will be returned
     
 dest_dir = input('destination folder name: ')
 
