@@ -7,4 +7,4 @@
 ./blassa/f6.pdf
 ./blassa/f7.pdf
 ./blassa/f8.pdf
-./blassa_okhra/f7.pdf
+./blassa_okhra/f1.pdf
