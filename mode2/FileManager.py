@@ -84,6 +84,7 @@ class Filemanager:
                     f.write('')
                 os.system(f'attrib +h {file}')
             case _:
+                file = f'.{file}'
                 with open(file, "w") as f:
                     f.write('')
         
