@@ -53,11 +53,12 @@ class Filemanager:
 
     def WhatToDo(self):
         ToDo = self.frame2.get_user_preferences()[-1]
-        match ToDo:
-            case "copy":
-                print('Proceeding to copy')
-            case "move":
-                print('Proceeding to move')
+        if len(self.SrcPathList)>0 and len(self.DestPathList)>0:
+            match ToDo:
+                case "copy":
+                    print('Proceeding to copy')
+                case "move":
+                    print('Proceeding to move')
 
         return ToDo
 
@@ -76,16 +77,31 @@ class Filemanager:
                 Path_already_exist = False
         return UniquePath
 
+    def write_log_file(self, file):
+        match os.name:
+            case "nt":
+                with open(file, "w") as f:
+                    f.write('')
+                os.system(f'attrib +h {file}')
+            case _:
+                with open(file, "w") as f:
+                    f.write('')
+        
+        with open(file, 'a') as f:
+            for i in self.List_of_logs:
+                f.write(i)
+                
+
     def do_work(self):
         try:
-            SrcPathList = self.Read_files(self.frame2.get_user_preferences()[0])
-            DestPathList = self.Read_files(self.frame2.get_user_preferences()[1], True)
+            self.SrcPathList = self.Read_files(self.frame2.get_user_preferences()[0])
+            self.DestPathList = self.Read_files(self.frame2.get_user_preferences()[1], True)
         except:
             sys.exit()
         ToDo = self.WhatToDo()
         paths_to_remove = [] # in case of a move operation      
-        for src_path in SrcPathList:
-            for dest_path in DestPathList:
+        for src_path in self.SrcPathList:
+            for dest_path in self.DestPathList:
                 try:
                     check_path = rf'{dest_path}/{os.path.basename(src_path)}'
                     new_dest_path = self.Unique_Path(check_path)        
@@ -112,12 +128,10 @@ class Filemanager:
             except Exception as hmm:
                 print(f'file {p} not moved only transfered\n')
                 self.List_of_logs.append(f'file {p} not moved only transfered\n{hmm}\n\n')      
+
+
         logs = self.Unique_Path('logs.txt')     
-        with open(logs, 'w') as f:
-            f.write('')     
-        with open(logs, 'a') as f:
-            for i in self.List_of_logs:
-                f.write(i)
+        self.write_log_file(logs)
         
 class Bg_frame(CTkFrame):
     def __init__(self, master):
@@ -213,11 +227,14 @@ def clear_focus(event):
 if __name__ == '__main__':
     set_appearance_mode("dark")
     set_default_color_theme("dark-blue")
+    
+    Folder_path = os.path.dirname(__file__)
+    os.chdir(Folder_path)
 
     root = CTk()
     root.geometry("400x350")
     root.title("File Manager")
-    root.iconbitmap(bitmap="icon.ico")
+    root.iconbitmap(bitmap="frog.ico")
     
     app = Filemanager(root)
      
